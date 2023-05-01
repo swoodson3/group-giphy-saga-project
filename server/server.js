@@ -24,7 +24,7 @@ app.use('/api/category', categoryRouter);
 
 app.post('/search', (req, res) => {
   console.log(req.body.value);
-  axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}&q=${req.body.value}`)
+  axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}&q=${req.body.value}&limit=10`)
        .then(response => {
         res.send(response.data);
        }).catch(error => {
