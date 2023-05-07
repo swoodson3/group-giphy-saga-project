@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import FavoriteImage from './FavoriteImage';
 
 const FavoritesList = () => {
-  const userId = useSelector(state => state.userId);
-  const favorites = useSelector((state) => state.favorites);
+  const userId = useSelector(store => store.userId);
+  const favorites = useSelector(store => store.favorites);
   const dispatch = useDispatch();
 
-  useEffect(() => {;
+  useEffect(() => {
   }, [dispatch, userId]);
 
 

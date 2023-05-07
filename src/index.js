@@ -6,30 +6,32 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 import axios from 'axios';
-import { takeEvery, put } from 'redux-saga/effects';
 
 
 
-function* rootSaga() {
-    yield takeEvery();
-    yield takeEvery();
-  }
+const favList = (state = [], action) => {
+    if (action.type === 'SET_FAVORITE_GIF') {
+        return [...state, action.payload];
+    }
+    return state;
+}
+
 
 const sagaMiddleware = createSagaMiddleware();
 
 const storeInstance = createStore(
-  combineReducers({
-  }),
-  applyMiddleware(sagaMiddleware, logger),
+    combineReducers({
+        favList,
+    }),
+    applyMiddleware(sagaMiddleware, logger),
 );
 
-sagaMiddleware.run(rootSaga);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <Provider store={storeInstance}> 
-        <App />
+        <Provider store={storeInstance}>
+            <App />
         </Provider>
     </React.StrictMode>
 );
