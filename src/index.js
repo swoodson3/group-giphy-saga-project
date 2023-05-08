@@ -9,7 +9,7 @@ import axios from 'axios';
 
 
 
-const favList = (state = [], action) => {
+const favorites = (state = [], action) => {
     if (action.type === 'SET_FAVORITE_GIF') {
         return [...state, action.payload];
     }
@@ -21,7 +21,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const storeInstance = createStore(
     combineReducers({
-        favList,
+        favorites,
     }),
     applyMiddleware(sagaMiddleware, logger),
 );
