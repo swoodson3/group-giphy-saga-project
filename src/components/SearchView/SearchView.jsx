@@ -24,8 +24,19 @@ function SearchView () {
 
     console.log(capture);
 
-    const addToFavorites = (id) => {
-        console.log(id);
+    const addToFavorites = (id, image_url, user_id, category_id) => {
+        axios.post(`/api/favorite`, {
+            // user_id,
+            id,
+            image_url,
+            category_id: id,
+        }).then((response) => {
+            console.log(id);
+            console.log(image_url);
+            console.log(category_id);
+            console.log(user_id);
+        })
+
     }
 
     const goToFavoritesList = () => {
@@ -46,7 +57,7 @@ function SearchView () {
             <div key={gif.id}>
                 <img src={gif.images.downsized.url}/>
                 <br />
-                <button onClick={() => addToFavorites(gif.id)}>Add To Favorites</button>
+                <button onClick={() => addToFavorites(gif.id, gif.image_url, gif.categery_id)}>Add To Favorites</button>
             </div>
         ))}
         </>
